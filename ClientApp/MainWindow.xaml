@@ -1,0 +1,20 @@
+﻿<Window x:Class="ClientApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <ListBox Name="clientListBox">
+        </ListBox>
+        <TextBox Name="ServerIpTextBox" TextWrapping="Wrap" Text="127.0.0.1" Width="120" Margin="86,10,594,386"/>
+        <Button Name="ConnectButton" Content="connect" HorizontalAlignment="Left" Margin="310,5,0,0" VerticalAlignment="Top" Click="ConnectButton_Click"/>
+        <TextBox Name="MessageTextBox" HorizontalAlignment="Left" Margin="154,309,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="341" Height="74"/>
+        <Button Name="SendButton" Content="send" HorizontalAlignment="Left" Margin="510,326,0,0" VerticalAlignment="Top" Click="SendButton_Click"/>
+        <TextBox Name="ReceivedMessagesTextBox" HorizontalAlignment="Left" Margin="154,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="341" Height="210"/>
+
+
+    </Grid>
+</Window>
