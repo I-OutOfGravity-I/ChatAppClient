@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\outofgravity\source\repos\ClientApp\ClientApp\obj\Debug\net6.0-windows\
+C:\Users\outofgravity\Desktop\ChatAppClient\ClientApp\obj\Debug\net6.0-windows\
 ClientApp
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\outofgravity\source\repos\ClientApp\ClientApp\App.xaml
-11407045341
+C:\Users\outofgravity\Desktop\ChatAppClient\ClientApp\App.xaml
+2-1376777318
 
-5-549398457
-1941709816142
-MainWindow.xaml;
+81878540632
+194-1325968647
+Login.xaml;MainWindow.xaml;
 
-True
+False
 

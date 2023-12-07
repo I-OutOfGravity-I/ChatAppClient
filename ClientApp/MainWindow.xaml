@@ -6,15 +6,58 @@
         xmlns:local="clr-namespace:ClientApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <ListBox Name="clientListBox">
-        </ListBox>
-        <TextBox Name="ServerIpTextBox" TextWrapping="Wrap" Text="127.0.0.1" Width="120" Margin="86,10,594,386"/>
-        <Button Name="ConnectButton" Content="connect" HorizontalAlignment="Left" Margin="310,5,0,0" VerticalAlignment="Top" Click="ConnectButton_Click"/>
-        <TextBox Name="MessageTextBox" HorizontalAlignment="Left" Margin="154,309,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="341" Height="74"/>
-        <Button Name="SendButton" Content="send" HorizontalAlignment="Left" Margin="510,326,0,0" VerticalAlignment="Top" Click="SendButton_Click"/>
-        <TextBox Name="ReceivedMessagesTextBox" HorizontalAlignment="Left" Margin="154,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="341" Height="210"/>
+    <Grid Background="DimGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <!-- Column for the side panel -->
+            <ColumnDefinition Width="*"/>
+            <!-- Column for the main content (ReceivedMessagesTextBox, MessageTextBox, SendButton) -->
+        </Grid.ColumnDefinitions>
 
+        <!-- Side Panel (Column 0) -->
+        <StackPanel Grid.Column="0" Margin="10" Background="WhiteSmoke" Opacity="0.8">
+            <!-- Add controls for the side panel here -->
+            <TextBlock Text="Connected User" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
+            <Button Content="Side Button 1"/>
+            <Button Content="Side Button 2"/>
+            <!-- Add more controls as needed -->
+        </StackPanel>
 
+        <!-- Main Content (Column 1) -->
+        <Grid Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <!-- Row for the ReceivedMessagesTextBox, takes up remaining space -->
+                <RowDefinition Height="Auto"/>
+                <!-- Row for the MessageTextBox and SendButton -->
+            </Grid.RowDefinitions>
+
+            <RichTextBox Grid.Row="0" Name="ReceivedMessagesTextBox" Margin="10,30,10,10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="False">
+ 
+            </RichTextBox>
+            <TextBox Grid.Row="1" Name="MessageTextBox" Margin="10,0,10,12" Height="35" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom"
+                     Background="WhiteSmoke" Opacity="0.8"/>
+
+            <Button Grid.Row="1" Name="SendButton" Content="send" HorizontalAlignment="Right" VerticalAlignment="Center" Click="SendButton_Click"
+                    Background="DarkGray" Foreground="White" Margin="0,10,10,10">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Padding" Value="10"/>
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.3"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3" BeginTime="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <!-- Add other controls as needed -->
+        </Grid>
     </Grid>
 </Window>

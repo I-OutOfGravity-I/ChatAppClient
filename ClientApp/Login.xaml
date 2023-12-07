@@ -1,0 +1,104 @@
+﻿<Window x:Class="ClientApp.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientApp"
+        mc:Ignorable="d"
+        Background="Transparent"
+        Title="Login" Height="400" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+    <Grid x:Name="LoginGrid"  Visibility="Visible" Background="Transparent">
+        <Border CornerRadius="0,0,20,20">
+            <Border.Background>
+                <ImageBrush Stretch="Fill" ImageSource="HHEK-Background.jpeg" RenderOptions.BitmapScalingMode="HighQuality"/>
+            </Border.Background>
+        </Border>
+        <Grid x:Name="TopBar" VerticalAlignment="Top" Height="20" Background="Orange" Panel.ZIndex="1"  MouseLeftButtonDown="Top_MouseLeftButtonDown">
+        </Grid>
+        <Grid Margin="355,0,0,300" Width="250" Height="80" Background="Transparent">
+            <Border Margin="0,0,10,10" CornerRadius="10,10,10,10">
+                <Border.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="hertz_logo_web_d.png"/>
+                </Border.Background>
+            </Border>
+        </Grid>
+
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="250" Height="230" >
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.4"/>
+            </Grid.Background>
+            <Border>
+                <Border.Effect>
+                    <BlurEffect Radius="230" KernelType="Gaussian"/>
+                </Border.Effect>
+            </Border>
+            <Label Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontSize="40" Foreground="White"></Label>
+            <TextBox x:Name="Server" LostFocus="Server_LostFocus" Foreground="Gray" Text="Server Name/IP" Height="20" Width="130" HorizontalAlignment="Center" PreviewMouseLeftButtonDown="Server_PreviewMouseLeftButtonDown"></TextBox>
+            <TextBox x:Name="Username" LostFocus="Username_LostFocus" Foreground="Gray" Text="Benutzername" Height="20" Width="130" HorizontalAlignment="Center" Margin="0,50,0,0" PreviewMouseLeftButtonDown="Username_PreviewMouseLeftButtonDown"></TextBox>
+            <Button Content="Start Chatting"  Width="90" Height="30" Click="Button_Click" HorizontalAlignment="Center" Margin="0,155,0,45"/>
+            <TextBlock TextWrapping="Wrap" x:Name="fehler" Text="" Foreground="Red" Width="200" Height="35" TextAlignment="Center" FontSize="12" HorizontalAlignment="Center" Margin="0,190,0,0"/>
+
+            <Grid x:Name="loading" Visibility="Hidden" Margin="0,190,0,0">
+                <Grid>
+                    <Path Width="39" Height="39" Stroke="Black" StrokeThickness="4">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure StartPoint="17,0">
+                                    <ArcSegment Size="17,17" RotationAngle="90" IsLargeArc="True" SweepDirection="Clockwise" Point="17,34"/>
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+
+                        <Path.RenderTransform>
+                            <RotateTransform x:Name="rotateTransform" Angle="0" CenterX="17" CenterY="17"/>
+                        </Path.RenderTransform>
+
+                        <Path.Triggers>
+                            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                Storyboard.TargetName="rotateTransform"
+                                Storyboard.TargetProperty="Angle"
+                                To="360" Duration="0:0:1" RepeatBehavior="Forever"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Path.Triggers>
+                    </Path>
+                </Grid>
+
+                <Grid>
+                    <Path Width="39" Height="39" Stroke="Orange" StrokeThickness="4">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure StartPoint="17,0">
+                                    <ArcSegment Size="17,17" RotationAngle="90" IsLargeArc="True" SweepDirection="Counterclockwise" Point="17,34"/>
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+
+                        <Path.RenderTransform>
+                            <RotateTransform x:Name="rotateTransform1" Angle="0" CenterX="17" CenterY="17"/>
+                        </Path.RenderTransform>
+
+                        <Path.Triggers>
+                            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                Storyboard.TargetName="rotateTransform1"
+                                Storyboard.TargetProperty="Angle"
+                                To="360" Duration="0:0:1" RepeatBehavior="Forever"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Path.Triggers>
+                    </Path>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </Grid>
+    
+</Window>

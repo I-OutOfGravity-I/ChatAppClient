@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "K5cRxsr2VyllGtjExtAMhdGgO/o0BKpUbAiiF/39oqUbDG96LIqDdoxC9MZbVBHc61jYBPTQsF4ccsA6k0myVA==",
+  "dgSpecHash": "56i5csVTaHN/Bo2mBc+m6HwyDxXI3xEzitkLABZvXvbpdsDnfwa4Rdcr10WyXHPgZin2EhdsDm/EoR2sZOe2gw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\outofgravity\\source\\repos\\ClientApp\\ClientApp\\ClientApp.csproj",
+  "projectFilePath": "C:\\Users\\outofgravity\\Desktop\\ChatAppClient\\ClientApp\\ClientApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

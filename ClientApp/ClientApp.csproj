@@ -7,4 +7,33 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="hertz_logo_web_d.png" />
+    <None Remove="HHEK-Background.jpeg" />
+	  <None Remove="loading.gif" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="HHEK-Background.jpeg" />
+    <Resource Include="hertz_logo_web_d.png" />
+	  <Resource Include="loading.gif" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
 </Project>

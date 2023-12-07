@@ -1,46 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Media;
 using System.Windows.Controls;
+
 
 namespace ClientApp
 {
-    using System;
-    using System.IO;
-    using System.Net.Sockets;
-    using System.Text;
-    using System.Threading;
-    using System.Windows;
-    using System.Windows.Controls;
-
     public partial class MainWindow : Window
     {
         private TcpClient client;
         private NetworkStream stream;
         private StreamReader reader;
         private StreamWriter writer;
-        private bool isConnected = false;
+        private Controller c = Controller.Instance;
 
         public MainWindow()
         {
             InitializeComponent();
+            Thread receiveThread = new Thread(ReceiveMessages);
+            receiveThread.Start();
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!isConnected)
+            if (!c.Connected)
             {
                 try
                 {
-                    string serverIp = ServerIpTextBox.Text;
+                    string serverIp = "127.0.0.1";
                     int serverPort = 12345; // Ändere den Port entsprechend deines Servers
 
                     client = new TcpClient(serverIp, serverPort);
@@ -48,8 +41,7 @@ namespace ClientApp
                     reader = new StreamReader(stream, Encoding.UTF8);
                     writer = new StreamWriter(stream, Encoding.UTF8);
 
-                    isConnected = true;
-                    ConnectButton.Content = "Disconnect";
+                    c.Connected = true;
                     MessageTextBox.IsEnabled = true;
                     SendButton.IsEnabled = true;
 
@@ -70,11 +62,11 @@ namespace ClientApp
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            if (isConnected)
+            if (c.Connected)
             {
                 string message = MessageTextBox.Text;
-                writer.WriteLine(message);
-                writer.Flush();
+                c.Writer.WriteLine(message);
+                c.Writer.Flush();
                 MessageTextBox.Clear();
             }
         }
@@ -83,9 +75,9 @@ namespace ClientApp
         {
             try
             {
-                while (isConnected)
+                while (c.Connected)
                 {
-                    string message = reader.ReadLine();
+                    string message = c.Reader.ReadLine();
                     if (message == null)
                     {
                         Disconnect();
@@ -95,7 +87,14 @@ namespace ClientApp
                     // Zeige die empfangene Nachricht in der TextBox an
                     Dispatcher.Invoke(() =>
                     {
-                        ReceivedMessagesTextBox.AppendText(message + Environment.NewLine);
+                        //ReceivedMessagesTextBox.AppendText(message + Environment.NewLine);
+                        try
+                        {
+
+
+                            AddTextToRichTextBox(message, Colors.Red);
+                        }
+                        catch { }
                     });
                 }
             }
@@ -106,12 +105,49 @@ namespace ClientApp
             }
         }
 
+        private void AddTextToRichTextBox(string text, Color color)
+        {
+            // Find the index of the first colon
+            int colonIndex = text.IndexOf(':');
+
+            // Create a new Run with the specified text and color
+            Run run = new Run(text.Substring(0, colonIndex + 1)); // Include the colon in the red text
+            run.Foreground = new SolidColorBrush(Colors.Blue);
+
+            // Create a new Run for the rest of the text
+            Run restRun = new Run(text.Substring(colonIndex + 1));
+            restRun.Foreground = new SolidColorBrush(Colors.Black);
+
+            // Create a new Paragraph and add both Runs
+            Paragraph paragraph = new Paragraph();
+            paragraph.Inlines.Add(run);
+            paragraph.Inlines.Add(restRun);
+
+            // Set the Paragraph's margin to zero
+            paragraph.Margin = new Thickness(0);
+
+            // Get the existing content of the RichTextBox
+            TextRange textRange = new TextRange(ReceivedMessagesTextBox.Document.ContentStart, ReceivedMessagesTextBox.Document.ContentEnd);
+
+            // Add the new Paragraph to the Blocks collection
+            ReceivedMessagesTextBox.Document.Blocks.Add(paragraph);
+
+            // Set the RichTextBox padding to zero
+            ReceivedMessagesTextBox.Padding = new Thickness(0);
+
+            // Scroll to the end
+            ReceivedMessagesTextBox.ScrollToEnd();
+        }
+
+
+
+
+
         private void Disconnect()
         {
-            if (isConnected)
+            if (c.Connected)
             {
-                isConnected = false;
-                ConnectButton.Content = "Connect";
+                c.Connected = false;
                 MessageTextBox.IsEnabled = false;
                 SendButton.IsEnabled = false;
 
