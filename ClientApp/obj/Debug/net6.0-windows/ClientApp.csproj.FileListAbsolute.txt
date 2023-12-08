@@ -41,3 +41,6 @@ C:\Users\outofgravity\Desktop\ChatAppClient\ClientApp\obj\Debug\net6.0-windows\C
 C:\Users\outofgravity\Desktop\ChatAppClient\ClientApp\obj\Debug\net6.0-windows\ref\ClientApp.dll
 C:\Users\outofgravity\Desktop\ChatAppClient\ClientApp\obj\Debug\net6.0-windows\Login.g.cs
 C:\Users\outofgravity\Desktop\ChatAppClient\ClientApp\obj\Debug\net6.0-windows\Login.baml
+C:\Users\outofgravity\Desktop\ChatAppClient\ClientApp\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\outofgravity\Desktop\ChatAppClient\ClientApp\obj\Debug\net6.0-windows\ClientApp.csproj.AssemblyReference.cache
+C:\Users\outofgravity\Desktop\ChatAppClient\ClientApp\obj\Debug\net6.0-windows\ClientApp.csproj.CopyComplete
