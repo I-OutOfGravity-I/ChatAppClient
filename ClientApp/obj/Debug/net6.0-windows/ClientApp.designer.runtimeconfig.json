@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\outofgravity\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\outofgravity\\.nuget\\packages"
+      "C:\\Users\\OUTOF\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\OUTOF\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

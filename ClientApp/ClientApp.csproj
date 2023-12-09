@@ -8,21 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="hertz_logo_web_d.png" />
-    <None Remove="HHEK-Background.jpeg" />
-	  <None Remove="loading.gif" />
-
+    <None Remove="Resources\hertz_logo_web_d.png" />
+    <None Remove="Resources\HHEK-Background.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="HHEK-Background.jpeg" />
-    <Resource Include="hertz_logo_web_d.png" />
-	  <Resource Include="loading.gif" />
 
+
+  <ItemGroup>
+	  <Resource Include="Resources\hertz_logo_web_d.png" />
+	  <Resource Include="Resources\HHEK-Background.jpeg" />
   </ItemGroup>
 
   <ItemGroup>

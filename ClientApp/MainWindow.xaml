@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"  WindowStartupLocation="CenterScreen">
     <Grid Background="DimGray">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -17,9 +17,9 @@
         <!-- Side Panel (Column 0) -->
         <StackPanel Grid.Column="0" Margin="10" Background="WhiteSmoke" Opacity="0.8">
             <!-- Add controls for the side panel here -->
-            <TextBlock Text="Connected User" FontSize="14" FontWeight="Bold" Margin="0,0,0,10"/>
-            <Button Content="Side Button 1"/>
-            <Button Content="Side Button 2"/>
+            <TextBlock Text="Connected User" FontSize="14"  Padding="3" Margin="0,0,0,10"/>
+            <StackPanel x:Name="connectedUserControl" Orientation="Vertical">
+            </StackPanel>
             <!-- Add more controls as needed -->
         </StackPanel>
 
@@ -32,14 +32,52 @@
                 <!-- Row for the MessageTextBox and SendButton -->
             </Grid.RowDefinitions>
 
-            <RichTextBox Grid.Row="0" Name="ReceivedMessagesTextBox" Margin="10,30,10,10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsEnabled="False">
- 
+            <RichTextBox Background="WhiteSmoke" Grid.Row="0" Name="ReceivedMessagesTextBox" Margin="10,10,10,10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsReadOnly="True" IsDocumentEnabled="True">
+
             </RichTextBox>
-            <TextBox Grid.Row="1" Name="MessageTextBox" Margin="10,0,10,12" Height="35" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom"
-                     Background="WhiteSmoke" Opacity="0.8"/>
+            <TextBox Grid.Row="1" Name="MessageTextBox" Margin="10,0,240,10" Height="38" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom"
+                     Background="WhiteSmoke" Opacity="0.8" KeyDown="MessageTextBox_KeyDown"/>
+
 
             <Button Grid.Row="1" Name="SendButton" Content="send" HorizontalAlignment="Right" VerticalAlignment="Center" Click="SendButton_Click"
-                    Background="DarkGray" Foreground="White" Margin="0,10,10,10">
+                    Background="DarkGray" Foreground="White" Margin="0,10,190,10" Height="38">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Padding" Value="10"/>
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.3"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3" BeginTime="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Grid.Row="1" Name="SendImage" Content="send Image" HorizontalAlignment="Right" VerticalAlignment="Center" Click="SelectImageButton_Click" Width="85" Height="38"
+        Background="DarkGray" Foreground="White" Margin="0,0,100,0">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Padding" Value="10"/>
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.5" Duration="0:0:0.3"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3" BeginTime="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            
+            <Button Grid.Row="1" Name="SendVideo" Content="send Video" HorizontalAlignment="Right" VerticalAlignment="Center" Click="SendVideo_Click" Width="85" Height="38"
+Background="DarkGray" Foreground="White" Margin="0,0,10,0">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Padding" Value="10"/>

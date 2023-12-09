@@ -6,19 +6,19 @@
         xmlns:local="clr-namespace:ClientApp"
         mc:Ignorable="d"
         Background="Transparent"
-        Title="Login" Height="400" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+        Title="Login" Height="400" Width="700" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
     <Grid x:Name="LoginGrid"  Visibility="Visible" Background="Transparent">
         <Border CornerRadius="0,0,20,20">
             <Border.Background>
-                <ImageBrush Stretch="Fill" ImageSource="HHEK-Background.jpeg" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <ImageBrush Stretch="Fill" ImageSource="Resources/HHEK-Background.jpeg" RenderOptions.BitmapScalingMode="HighQuality"/>
             </Border.Background>
         </Border>
         <Grid x:Name="TopBar" VerticalAlignment="Top" Height="20" Background="Orange" Panel.ZIndex="1"  MouseLeftButtonDown="Top_MouseLeftButtonDown">
         </Grid>
         <Grid Margin="355,0,0,300" Width="250" Height="80" Background="Transparent">
-            <Border Margin="0,0,10,10" CornerRadius="10,10,10,10">
+            <Border Margin="0,0,-59,10" CornerRadius="10,10,10,10">
                 <Border.Background>
-                    <ImageBrush Stretch="Uniform" ImageSource="hertz_logo_web_d.png"/>
+                    <ImageBrush Stretch="Uniform" ImageSource="Resources/hertz_logo_web_d.png"/>
                 </Border.Background>
             </Border>
         </Grid>
@@ -33,7 +33,7 @@
                 </Border.Effect>
             </Border>
             <Label Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" FontSize="40" Foreground="White"></Label>
-            <TextBox x:Name="Server" LostFocus="Server_LostFocus" Foreground="Gray" Text="Server Name/IP" Height="20" Width="130" HorizontalAlignment="Center" PreviewMouseLeftButtonDown="Server_PreviewMouseLeftButtonDown"></TextBox>
+            <TextBox x:Name="Server" LostFocus="Server_LostFocus" Foreground="Gray" Text="127.0.0.1" Height="20" Width="130" HorizontalAlignment="Center" PreviewMouseLeftButtonDown="Server_PreviewMouseLeftButtonDown"></TextBox>
             <TextBox x:Name="Username" LostFocus="Username_LostFocus" Foreground="Gray" Text="Benutzername" Height="20" Width="130" HorizontalAlignment="Center" Margin="0,50,0,0" PreviewMouseLeftButtonDown="Username_PreviewMouseLeftButtonDown"></TextBox>
             <Button Content="Start Chatting"  Width="90" Height="30" Click="Button_Click" HorizontalAlignment="Center" Margin="0,155,0,45"/>
             <TextBlock TextWrapping="Wrap" x:Name="fehler" Text="" Foreground="Red" Width="200" Height="35" TextAlignment="Center" FontSize="12" HorizontalAlignment="Center" Margin="0,190,0,0"/>

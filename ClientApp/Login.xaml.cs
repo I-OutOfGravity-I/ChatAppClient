@@ -1,26 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace ClientApp
+﻿namespace ClientApp
 {
     using System;
-    using System.IO;
-    using System.Net.Sockets;
-    using System.Reflection.PortableExecutable;
-    using System.Text;
     using System.Threading;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
 
@@ -41,11 +23,16 @@ namespace ClientApp
             t.Start();
 
 
-            Thread x = new Thread(() => tryLoggingIn(server, username));
+            Thread x = new Thread(() => tryLoggingIn(server, username, GetC()));
             x.Start();
         }
 
-        private void tryLoggingIn(string server, string username)
+        private Controller GetC()
+        {
+            return c;
+        }
+
+        private void tryLoggingIn(string server, string username, Controller c)
         {
             Thread.Sleep(800);
 
@@ -62,6 +49,7 @@ namespace ClientApp
                 Thread x = new Thread(() => openWindow());
                 x.SetApartmentState(ApartmentState.STA);
                 x.Start();
+                Thread.Sleep(50);
                 this.Dispatcher.Invoke(new Action(() => {
                     this.Close();
                 }));
