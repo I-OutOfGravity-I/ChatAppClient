@@ -1,7 +1,6 @@
 ﻿namespace ClientApp
 {
     using System;
-    using System.Threading;
     using System.Windows;
     using System.Windows.Input;
     using System.Windows.Media;
@@ -10,61 +9,16 @@
     {
         private bool serverAlreadyEmptied = false;
         private bool UsernameAlreadyEmptied = false;
-        private Controller c = Controller.Instance;
 
+        public event EventHandler<Tuple<string, string>> LoginEvent;
+
+        public Login()
+        {
+            InitializeComponent();
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string server = Server.Text;
-            string username = Username.Text;
-
-            fehler.Text = "";
-
-            Thread t = new Thread(playLoading);
-            t.Start();
-
-
-            Thread x = new Thread(() => tryLoggingIn(server, username, GetC()));
-            x.Start();
-        }
-
-        private Controller GetC()
-        {
-            return c;
-        }
-
-        private void tryLoggingIn(string server, string username, Controller c)
-        {
-            Thread.Sleep(800);
-
-            Exception ex = c.tryConnection(server, username);
-            if (ex != null)
-            {
-                this.Dispatcher.Invoke(new Action(() => {
-                    loading.Visibility = Visibility.Hidden;
-                    fehler.Text = ex.Message;
-                }));
-            }
-            else
-            {
-                Thread x = new Thread(() => openWindow());
-                x.SetApartmentState(ApartmentState.STA);
-                x.Start();
-                Thread.Sleep(50);
-                this.Dispatcher.Invoke(new Action(() => {
-                    this.Close();
-                }));
-            }
-        }
-        private void openWindow()
-        {
-            MainWindow window = new MainWindow();
-            window.ShowDialog();
-        }
-        private void playLoading()
-        {
-            this.Dispatcher.Invoke(new Action(() => {
-                loading.Visibility = Visibility.Visible;
-            }));
+            LoginEvent?.Invoke(this, Tuple.Create(Server.Text, Username.Text));
         }
 
         private void Top_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -108,6 +62,35 @@
                 Username.Foreground = new SolidColorBrush(Colors.Gray);
                 UsernameAlreadyEmptied = false;
             }
+        }
+
+        public void PlayLoading()
+        {
+            this.Dispatcher.Invoke(new Action(() => {
+                loading.Visibility = Visibility.Visible;
+            }));
+        }
+        internal void SetFehlerTextEmpty()
+        {
+            this.Dispatcher.Invoke(new Action(() =>
+            {
+                fehler.Text = "";
+            }));
+        }
+
+        internal void DisplayLoginError(Exception ex)
+        {
+            this.Dispatcher.Invoke(new Action(() => {
+                loading.Visibility = Visibility.Hidden;
+                fehler.Text = ex.Message;
+            }));
+        }
+
+        internal void CloseWindow()
+        {
+            this.Dispatcher.Invoke(new Action(() => {
+                this.Close();
+            }));
         }
     }
 }
